@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Hebrew RTL Fix for Claude.ai",
+  "version": "1.1",
+  "description": "Forces RTL on Hebrew lines inside Claude.ai chat bubbles",
+
+  "rtl_settings": {
+    "__comment": "Edit these knobs, then reload the extension in chrome://extensions. Deleting a key falls back to the same default in content.js.",
+
+    "paragraph_selector": "p, li, blockquote, h1, h2, h3, h4, h5, h6, td, th",
+    "skip_selector": "nav, aside, header, pre, code, [contenteditable=\"true\"], textarea",
+    "input_selector": "[contenteditable=\"true\"], textarea",
+
+    "debounce_ms": 80,
+    "spa_rescan_delay_ms": 600
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://claude.ai/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

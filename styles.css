@@ -1,0 +1,21 @@
+/* Code is never RTL — force LTR and isolate from surrounding paragraph dir. */
+pre, pre *, code {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  text-align: left !important;
+}
+
+/* Composer: let the browser pick direction per-keystroke from first-strong char. */
+[contenteditable="true"], textarea {
+  unicode-bidi: plaintext;
+}
+
+/* Multi-paragraph input: each line picks its own direction, so a Hebrew line
+   under an English line renders correctly while typing. */
+[contenteditable="true"] p {
+  unicode-bidi: plaintext;
+}
+
+/* No global `direction: rtl` on body or message containers — direction is set
+   per-paragraph from content.js to avoid cascading into modals, settings,
+   and the editor. */
